@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제61기 수지주일반 강평회</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1a2f4e;
+    --blue: #2c5282;
+    --sky: #4a90c4;
+    --light: #eaf1f8;
+    --accent: #c0392b;
+    --gold: #b8860b;
+    --text: #1e2d3d;
+    --muted: #6b7c93;
+    --bg: #f0f4f9;
+    --white: #ffffff;
+  }
+
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; max-width: 100%; }
+    .tab-nav { display: none; }
+    .tab-panel { display: block !important; page-break-before: always; }
+    .tab-panel:first-of-type { page-break-before: avoid; }
+  }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── Top Header ── */
+  .top-header {
+    background: var(--navy);
+    color: white;
+    text-align: center;
+    padding: 28px 20px 0;
+  }
+  .top-header .klass {
+    font-size: 12px;
+    letter-spacing: .3em;
+    color: #8ab4d4;
+    margin-bottom: 6px;
+  }
+  .top-header h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    margin-bottom: 20px;
+  }
+
+  /* ── Tab Nav ── */
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding: 0 20px;
+  }
+  .tab-btn {
+    background: rgba(255,255,255,.12);
+    color: rgba(255,255,255,.7);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px 8px 0 0;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    letter-spacing: .04em;
+    transition: background .15s, color .15s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,.2); color: white; }
+  .tab-btn.active {
+    background: var(--bg);
+    color: var(--navy);
+  }
+
+  /* ── Page ── */
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    background: var(--white);
+    box-shadow: 0 4px 24px rgba(26,47,78,.10);
+    min-height: 60vh;
+  }
+
+  /* ── Tab Panels ── */
+  .tab-panel { display: none; padding: 40px 52px 56px; }
+  .tab-panel.active { display: block; }
+
+  /* ── Section ── */
+  .section { margin-bottom: 40px; }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--light);
+  }
+  .section-num {
+    width: 26px; height: 26px;
+    background: var(--navy); color: white;
+    border-radius: 50%;
+    font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-title h2 { font-size: 15px; font-weight: 700; color: var(--navy); letter-spacing: .04em; }
+
+  /* ── Period ── */
+  .period-box {
+    background: var(--light);
+    border-left: 4px solid var(--sky);
+    padding: 13px 18px;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px; color: var(--navy);
+  }
+  .period-box strong { font-weight: 700; }
+  .period-badge {
+    display: inline-block; margin-left: 10px;
+    background: var(--navy); color: white;
+    font-size: 11px; font-weight: 700;
+    padding: 2px 10px; border-radius: 20px;
+  }
+
+  /* ── Tables ── */
+  .stats-table, .comp-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+  }
+  .stats-table th, .comp-table th {
+    background: var(--navy); color: white;
+    padding: 9px 12px; font-weight: 600;
+    text-align: center; font-size: 12px; letter-spacing: .03em;
+  }
+  .stats-table td, .comp-table td {
+    padding: 9px 12px; text-align: center;
+    border-bottom: 1px solid #dee6ef; vertical-align: middle;
+  }
+  .stats-table tr:nth-child(odd) td { background: var(--light); }
+  .stats-table tr:nth-child(even) td { background: white; }
+  .stats-table tr.row-61 td { background: #deeaf7; }
+  .stats-table tr.row-61-sub td { background: #eef4fb; border-bottom: 2px solid #b8cfe8; }
+  .stats-table tr.row-60 td { background: #f5f5f5; }
+  .stats-table tr.row-60-sub td { background: #ffffff; }
+  .label-col { font-weight: 600; color: var(--navy); text-align: center; }
+  .muted-val { color: var(--muted); font-size: 11px; }
+  .muted-label { color: var(--muted); font-weight: 400; font-size: 11px; }
+
+  .comp-table tr:nth-child(odd) td { background: var(--light); }
+  .comp-table tr:nth-child(even) td { background: white; }
+  .comp-table .stage-cell { text-align: center; font-weight: 700; font-size: 12px; color: white; }
+  .comp-table .count-cell { text-align: center; font-weight: 700; color: var(--navy); }
+  .comp-table .names-cell { text-align: left; line-height: 1.7; }
+  .comp-table tfoot td {
+    background: var(--navy) !important; color: white;
+    font-weight: 700; text-align: center;
+    padding: 10px 12px; font-size: 13px;
+  }
+
+  .s5 { background: #1a2f4e; }
+  .s4 { background: #1e4272; }
+  .s3 { background: #2c5282; }
+  .s2 { background: #3b6ea5; }
+  .s1 { background: #4a90c4; }
+
+  /* ── Badges ── */
+  .helper-badge {
+    display: inline-block; background: var(--gold); color: white;
+    font-size: 10px; font-weight: 700;
+    padding: 1px 7px; border-radius: 10px; vertical-align: middle;
+  }
+  .rate-highlight { font-weight: 700; color: var(--accent); font-size: 14px; }
+
+  /* ── Rate note ── */
+  .rate-note {
+    margin-top: 10px; font-size: 12px;
+    color: var(--muted); padding-left: 2px;
+  }
+
+  /* ── Placeholder (신임훈련자 / 62기일정) ── */
+  .placeholder {
+    text-align: center; padding: 60px 20px;
+    color: var(--muted);
+  }
+  .placeholder .icon { font-size: 40px; margin-bottom: 16px; }
+  .placeholder p { font-size: 14px; line-height: 1.8; }
+
+  /* ── Footer ── */
+  .tab-footer {
+    margin-top: 40px; padding-top: 20px;
+    border-top: 1px solid #ccd8e5;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: var(--muted);
+  }
+  .total-badge {
+    background: var(--navy); color: white;
+    padding: 5px 16px; border-radius: 20px;
+    font-size: 12px; font-weight: 700;
+  }
+
+  @media (max-width: 600px) {
+    .tab-panel { padding: 28px 18px 40px; }
+    .tab-btn { padding: 9px 14px; font-size: 12px; }
+    .top-header h1 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top Header -->
+<div class="top-header">
+  <div class="klass">제 61 기 · 수지주일반 · 강평회</div>
+  <h1>학 사 보 고</h1>
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('report', this)">📋 학사보고</button>
+    <button class="tab-btn" onclick="switchTab('schedule', this)">📅 제62기 일정</button>
+    <button class="tab-btn" onclick="switchTab('newbie', this)">📝 비고</button>
+  </nav>
+</div>
+
+<div class="page">
+
+  <!-- ══ TAB 1: 학사보고 ══ -->
+  <div class="tab-panel active" id="tab-report">
+
+    <!-- 1. 훈련 기간 -->
+    <div class="section">
+      <div class="section-title">
+        <div class="section-num">1</div>
+        <h2>훈련 기간</h2>
+      </div>
+      <div class="period-box">
+        <strong>2026년 3월 1일(일)</strong> ~ <strong>2026년 5월 24일(일)</strong>
+        <span class="period-badge">총 13주</span>
+      </div>
+    </div>
+
+    <!-- 2. 현장 훈련 통계 -->
+    <div class="section">
+      <div class="section-title">
+        <div class="section-num">2</div>
+        <h2>현장 훈련 통계</h2>
+      </div>
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>기수</th>
+            <th>복음제시</th>
+            <th>결신</th>
+            <th>거절/보류</th>
+            <th>확신</th>
+            <th>이미신자</th>
+            <th>결신율</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-61">
+            <td class="label-col">제61기</td>
+            <td><strong>134명</strong></td>
+            <td><strong>50명</strong></td>
+            <td>25명</td>
+            <td>14명</td>
+            <td>45명</td>
+            <td><strong class="rate-highlight">66.7%</strong></td>
+          </tr>
+          <tr class="row-61-sub">
+            <td class="muted-label">비율</td>
+            <td class="muted-val">100%</td>
+            <td class="muted-val">37.3%</td>
+            <td class="muted-val">18.7%</td>
+            <td class="muted-val">10.4%</td>
+            <td class="muted-val">33.6%</td>
+            <td class="muted-val">—</td>
+          </tr>
+          <tr class="row-60">
+            <td class="label-col">제60기</td>
+            <td><strong>113명</strong></td>
+            <td>63명</td>
+            <td>23명</td>
+            <td>5명</td>
+            <td>22명</td>
+            <td><strong>73.3%</strong></td>
+          </tr>
+          <tr class="row-60-sub">
+            <td class="muted-label">비율</td>
+            <td class="muted-val">100%</td>
+            <td class="muted-val">55.8%</td>
+            <td class="muted-val">20.4%</td>
+            <td class="muted-val">4.4%</td>
+            <td class="muted-val">19.5%</td>
+            <td class="muted-val">—</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="rate-note">※ 제61기 결신율 <span class="rate-highlight">66.7%</span> — 결신 50명 / 응답 가능 인원(이미신자·확신 제외) 75명 기준</p>
+      <p class="rate-note" style="margin-top:3px;">※ 제60기 결신율 <strong>73.3%</strong> — 결신 63명 / 응답 가능 인원 86명 기준</p>
+    </div>
+
+    <!-- 3. 단계별 수료자 현황 -->
+    <div class="section">
+      <div class="section-title">
+        <div class="section-num">3</div>
+        <h2>단계별 수료자 현황</h2>
+      </div>
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th style="width:68px">단계</th>
+            <th style="text-align:left">수 료 자</th>
+            <th style="width:60px">인원</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="stage-cell s5">5단계</td>
+            <td class="names-cell">김혁주, 박선영 <span class="helper-badge">헬퍼</span>, 안현주</td>
+            <td class="count-cell">3명</td>
+          </tr>
+          <tr>
+            <td class="stage-cell s4">4단계</td>
+            <td class="names-cell">성기현, 신명순, 이미경</td>
+            <td class="count-cell">3명</td>
+          </tr>
+          <tr>
+            <td class="stage-cell s3">3단계</td>
+            <td class="names-cell">김성현, 김윤희, 윤성원, 이지영, 임원기, 임주현</td>
+            <td class="count-cell">6명</td>
+          </tr>
+          <tr>
+            <td class="stage-cell s2">2단계</td>
+            <td class="names-cell">김용대, 김희정, 박길순, 박희철, 배현주, 신대용, 안희정, 이나경, 이선영</td>
+            <td class="count-cell">9명</td>
+          </tr>
+          <tr>
+            <td class="stage-cell s1">1단계</td>
+            <td class="names-cell">강동우, 강영미, 김정옥, 김진우, 송유미, 신유경, 이지연, 이희자, 정현주, 조은진, 최정화</td>
+            <td class="count-cell">11명</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>합계</td>
+            <td>5개 단계 전원 수료 조건 완료</td>
+            <td>32명</td>
+          </tr>
+        </tfoot>
+      </table>
+      <p class="rate-note" style="margin-top:10px;">※ <span class="helper-badge">헬퍼</span> 헬퍼 신청자 1명 (박선영)</p>
+    </div>
+
+    <!-- 4. 제62기 신청 현황 -->
+    <div class="section">
+      <div class="section-title">
+        <div class="section-num">4</div>
+        <h2>제62기 신청 현황</h2>
+      </div>
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>1단계</th>
+            <th>2단계</th>
+            <th>3단계</th>
+            <th>4단계</th>
+            <th>5단계</th>
+            <th>합계</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label-col">신청</td>
+            <td class="muted-val">—</td>
+            <td><strong>7명</strong></td>
+            <td><strong>6명</strong></td>
+            <td><strong>3명</strong></td>
+            <td><strong>3명</strong></td>
+            <td><strong style="color:var(--navy)">19명</strong></td>
+          </tr>
+          <tr>
+            <td class="label-col">61기 수료자</td>
+            <td class="muted-val">—</td>
+            <td>11명</td>
+            <td>9명</td>
+            <td>6명</td>
+            <td>3명</td>
+            <td><strong style="color:var(--navy)">29명</strong></td>
+          </tr>
+          <tr>
+            <td class="label-col" style="color:var(--accent)">미신청자</td>
+            <td class="muted-val">—</td>
+            <td style="font-size:12px;line-height:1.8">신유경<br>강영미<br>조은진<br>이희자</td>
+            <td style="font-size:12px;line-height:1.8">김대용<br>박희철<br>이나경</td>
+            <td style="font-size:12px;line-height:1.8">김윤희<br>이지영<br>윤성원</td>
+            <td class="muted-val">—</td>
+            <td style="font-weight:700;color:var(--accent)">10명</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tab-footer">
+      <span>2026년 5월 24일</span>
+      <span class="total-badge">총 수료 32명</span>
+    </div>
+  </div>
+
+  <!-- ══ TAB 3: 비고 ══ -->
+  <div class="tab-panel" id="tab-newbie">
+    <div class="section" style="margin-bottom:32px">
+      <div class="section-title">
+        <div class="section-num">1</div>
+        <h2>신입 헬퍼 신청</h2>
+      </div>
+      <div class="period-box">
+        <strong>대상자</strong> : 5단계 수료자<br>
+        <strong>신청서 제출</strong> &nbsp;→&nbsp; <strong>셀프 암기점검</strong> &nbsp;→&nbsp; <strong>반장 면접</strong> 순 진행
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:32px">
+      <div class="section-title">
+        <div class="section-num">2</div>
+        <h2>신입 예비 훈련자 교육(OT)</h2>
+      </div>
+      <div class="period-box">
+        <strong>대상자</strong> : 2단계 수료자<br>
+        <strong>OT</strong> : 8월 초 &nbsp;&nbsp;|&nbsp;&nbsp; <strong>최종 암기 점검</strong> : 8월 말
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:32px">
+      <div class="section-title">
+        <div class="section-num">3</div>
+        <h2>동작시범 촬영</h2>
+      </div>
+      <div class="period-box">
+        <strong>촬영 시기</strong> : 8월 중
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="tab-schedule">
+
+    <!-- 주요 일정 -->
+    <div class="section">
+      <div class="section-title">
+        <div class="section-num">1</div>
+        <h2>주요 일정</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="info-card" style="border-left-color:#b8860b">
+          <div class="info-label">🙏 훈련자 기도회</div>
+          <div class="info-value">2026년 8월 9일(일) 오후 3시 30분</div>
+          <div class="info-sub">개강 3주 전</div>
+        </div>
+        <div class="info-card" style="border-left-color:#1a2f4e">
+          <div class="info-label">🎓 개강일</div>
+          <div class="info-value">2026년 8월 30일(일) 오후 3시 30분</div>
+          <div class="info-sub">1주차 시작</div>
+        </div>
+        <div class="info-card" style="border-left-color:#2c5282">
+          <div class="info-label">📆 훈련 기간</div>
+          <div class="info-value">2026년 8월 30일 ~ 11월 말</div>
+          <div class="info-sub">총 13주 ~ 14주</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 월별 달력 -->
+    <div class="section">
+      <div class="section-title">
+        <div class="section-num">2</div>
+        <h2>주차별 일정표 (월~일)</h2>
+      </div>
+
+      <!-- 8월 -->
+      <div class="cal-month">
+        <div class="cal-month-title">2026년 8월</div>
+        <table class="cal-table">
+          <thead><tr><th>주차</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th><th class="sun">일</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr class="pre-week">
+              <td class="week-num">사전</td>
+              <td colspan="4" class="cal-empty"></td>
+              <td></td><td></td>
+              <td class="sun special-day">9일</td>
+              <td class="note-cell">🙏 훈련자 기도회<br><span class="note-time">오후 3:30</span></td>
+            </tr>
+            <tr class="week-row w1">
+              <td class="week-num">1주</td>
+              <td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td>
+              <td class="sun opening-day">30</td>
+              <td class="note-cell">🎓 개강<br><span class="note-time">오후 3:30</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 9월 -->
+      <div class="cal-month">
+        <div class="cal-month-title">2026년 9월</div>
+        <table class="cal-table">
+          <thead><tr><th>주차</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th><th class="sun">일</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr class="week-row w2">
+              <td class="week-num">2주</td>
+              <td>31</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td>
+              <td class="sun">6</td><td class="note-cell">👥 그룹모임<br>🤝 코이노니아 언약</td>
+            </tr>
+            <tr class="week-row w3">
+              <td class="week-num">3주</td>
+              <td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
+              <td class="sun">13</td><td class="note-cell">🏛️ 전체보고</td>
+            </tr>
+            <tr class="week-row w4">
+              <td class="week-num">4주</td>
+              <td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
+              <td class="sun">20</td><td class="note-cell">👥 그룹모임</td>
+            </tr>
+            <tr class="week-row w5 holiday-week">
+              <td class="week-num">5주</td>
+              <td>21</td><td>22</td>
+              <td class="holiday-day">23</td>
+              <td class="holiday-day">24</td>
+              <td class="holiday-day">25</td>
+              <td class="holiday-day">26</td>
+              <td class="sun holiday-sun">27</td>
+              <td class="note-cell">🎑 추석연휴 (23~26)<br><span class="badge-off">9/27 휴강</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 10월 -->
+      <div class="cal-month">
+        <div class="cal-month-title">2026년 10월</div>
+        <table class="cal-table">
+          <thead><tr><th>주차</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th><th class="sun">일</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr class="week-row w6">
+              <td class="week-num">6주</td>
+              <td>28</td><td>29</td><td>30</td><td>1</td><td>2</td><td>3</td>
+              <td class="sun">4</td><td class="note-cell">🙏 기도후원자 초청<br><span style="font-size:10px;color:var(--muted)">(전체보고 및 그룹모임)</span></td>
+            </tr>
+            <tr class="week-row w7">
+              <td class="week-num">7주</td>
+              <td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td>
+              <td class="sun">11</td><td class="note-cell">🏛️ 전체보고</td>
+            </tr>
+            <tr class="week-row w8">
+              <td class="week-num">8주</td>
+              <td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td>
+              <td class="sun">18</td><td class="note-cell">📊 중간점검</td>
+            </tr>
+            <tr class="week-row w9 holiday-week">
+              <td class="week-num">9주</td>
+              <td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td>
+              <td class="sun holiday-sun">25</td>
+              <td class="note-cell">✝️ 블레싱<br><span class="badge-off">10/25 휴강</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 11월 -->
+      <div class="cal-month">
+        <div class="cal-month-title">2026년 11월</div>
+        <table class="cal-table">
+          <thead><tr><th>주차</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th><th class="sun">일</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr class="week-row w10">
+              <td class="week-num">10주</td>
+              <td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td>
+              <td class="sun">1</td><td class="note-cell">👥 그룹모임<br>📸 사진촬영</td>
+            </tr>
+            <tr class="week-row w11">
+              <td class="week-num">11주</td>
+              <td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
+              <td class="sun">8</td><td class="note-cell">🏛️ 전체보고</td>
+            </tr>
+            <tr class="week-row w12">
+              <td class="week-num">12주</td>
+              <td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td>
+              <td class="sun">15</td><td class="note-cell">👥 그룹모임</td>
+            </tr>
+            <tr class="week-row w13">
+              <td class="week-num">13주</td>
+              <td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td>
+              <td class="sun end-13">22</td><td class="note-cell">🏁 최종평가</td>
+            </tr>
+            <tr class="week-row w14">
+              <td class="week-num">14주</td>
+              <td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td>
+              <td class="sun end-14">29</td><td class="note-cell">🎓 수료식<br><span style="font-size:10px;color:var(--muted)">(수료만찬)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- tab-schedule -->
+
+</div><!-- .page -->
+
+<style>
+  /* ── Info Cards ── */
+  .info-card {
+    background: var(--light);
+    border-left: 4px solid var(--navy);
+    padding: 12px 18px;
+    border-radius: 0 8px 8px 0;
+    display: flex; align-items: center; gap: 16px;
+    flex-wrap: wrap;
+  }
+  .info-label { font-size: 12px; font-weight: 700; color: var(--muted); min-width: 100px; }
+  .info-value { font-size: 14px; font-weight: 700; color: var(--navy); flex: 1; }
+  .info-sub { font-size: 11px; color: var(--muted); background: white; padding: 2px 10px; border-radius: 20px; }
+
+  /* ── Calendar ── */
+  .cal-month { margin-bottom: 20px; }
+  .cal-month-title {
+    background: var(--navy); color: white;
+    font-size: 13px; font-weight: 700;
+    padding: 7px 14px; border-radius: 6px 6px 0 0;
+    letter-spacing: .06em;
+  }
+  .cal-table {
+    width: 100%; border-collapse: collapse; font-size: 12px;
+  }
+  .cal-table th {
+    background: #2c5282; color: white;
+    padding: 6px 4px; text-align: center;
+    font-size: 11px; font-weight: 600;
+  }
+  .cal-table th.sun { color: #ffb3b3; }
+  .cal-table td {
+    padding: 7px 4px; text-align: center;
+    border: 1px solid #dee6ef;
+    font-size: 12px;
+  }
+  .cal-table .week-num {
+    background: var(--light); font-weight: 700;
+    color: var(--navy); font-size: 11px; width: 46px;
+    line-height: 1.4;
+  }
+  .train-week {
+    display: block; font-size: 10px; font-weight: 600;
+    color: var(--sky); margin-top: 2px;
+  }
+  .off-week { color: #e65100 !important; }
+  .cal-table .sun { color: #c0392b; font-weight: 600; }
+  .cal-table .note-cell {
+    text-align: left; font-size: 11px;
+    color: var(--navy); padding: 4px 8px;
+    line-height: 1.6; min-width: 110px;
+  }
+  .note-time { color: var(--muted); font-size: 10px; }
+  .cal-table .cal-empty { background: #f8f9fa; }
+  .cal-table .special-day {
+    background: #fff8e6; color: #b8860b !important;
+    font-weight: 700; border: 1px solid #f0d080;
+  }
+  .cal-table .opening-day {
+    background: #e8f0fb; color: #1a2f4e !important;
+    font-weight: 700; border: 1px solid #a8c4e8;
+  }
+  .cal-table .end-13 {
+    background: #e8f5e9; color: #2e7d32 !important;
+    font-weight: 700;
+  }
+  .cal-table .end-14 {
+    background: #e3f0ff; color: #1a2f4e !important;
+    font-weight: 700;
+  }
+  .pre-week td { background: #fafafa; }
+  .week-row:hover td { background: #f0f6ff; transition: background .1s; }
+  .holiday-day { background: #fff3e0 !important; color: #e65100 !important; font-weight: 600; }
+  .holiday-sun { background: #fff3e0 !important; color: #c0392b !important; font-weight: 700; }
+  .badge-off {
+    display: inline-block; background: #e65100; color: white;
+    font-size: 10px; font-weight: 700; padding: 1px 7px;
+    border-radius: 10px; margin-top: 2px;
+  }
+</style>
+
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
