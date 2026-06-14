@@ -42,42 +42,44 @@
     background: var(--navy);
     color: white;
     text-align: center;
-    padding: 28px 20px 0;
+    padding: 16px 16px 0;
   }
   .top-header .klass {
-    font-size: 12px;
-    letter-spacing: .3em;
+    font-size: 11px;
+    letter-spacing: .15em;
     color: #8ab4d4;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
   .top-header h1 {
     font-family: 'Noto Serif KR', serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     letter-spacing: .1em;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
   }
 
   /* ── Tab Nav ── */
   .tab-nav {
     display: flex;
-    justify-content: center;
-    gap: 4px;
-    padding: 0 20px;
+    justify-content: stretch;
+    gap: 0;
+    padding: 0;
+    width: 100%;
   }
   .tab-btn {
     background: rgba(255,255,255,.12);
     color: rgba(255,255,255,.7);
     border: none;
-    padding: 10px 24px;
-    border-radius: 8px 8px 0 0;
-    font-size: 13px;
+    padding: 12px 8px;
+    border-radius: 0;
+    font-size: 12px;
     font-weight: 600;
     font-family: 'Noto Sans KR', sans-serif;
     cursor: pointer;
-    letter-spacing: .04em;
+    letter-spacing: .02em;
     transition: background .15s, color .15s;
     white-space: nowrap;
+    flex: 1;
   }
   .tab-btn:hover { background: rgba(255,255,255,.2); color: white; }
   .tab-btn.active {
@@ -87,15 +89,15 @@
 
   /* ── Page ── */
   .page {
-    max-width: 780px;
+    max-width: 100%;
     margin: 0 auto;
     background: var(--white);
-    box-shadow: 0 4px 24px rgba(26,47,78,.10);
+    box-shadow: none;
     min-height: 60vh;
   }
 
   /* ── Tab Panels ── */
-  .tab-panel { display: none; padding: 40px 52px 56px; }
+  .tab-panel { display: none; padding: 20px 16px 40px; }
   .tab-panel.active { display: block; }
 
   /* ── Section ── */
@@ -155,11 +157,11 @@
   .muted-val { color: var(--muted); font-size: 11px; }
   .muted-label { color: var(--muted); font-weight: 400; font-size: 11px; }
 
-  .comp-table tr:nth-child(odd) td { background: var(--light); }
-  .comp-table tr:nth-child(even) td { background: white; }
+  .comp-table tr:nth-child(odd) td { background: var(--light); color: var(--text); }
+  .comp-table tr:nth-child(even) td { background: white; color: var(--text); }
   .comp-table .stage-cell { text-align: center; font-weight: 700; font-size: 12px; color: white; }
   .comp-table .count-cell { text-align: center; font-weight: 700; color: var(--navy); }
-  .comp-table .names-cell { text-align: left; line-height: 1.7; }
+  .comp-table .names-cell { text-align: left; line-height: 1.7; color: var(--text); }
   .comp-table tfoot td {
     background: var(--navy) !important; color: white;
     font-weight: 700; text-align: center;
@@ -207,11 +209,21 @@
     font-size: 12px; font-weight: 700;
   }
 
-  @media (max-width: 600px) {
+
     .tab-panel { padding: 28px 18px 40px; }
     .tab-btn { padding: 9px 14px; font-size: 12px; }
     .top-header h1 { font-size: 20px; }
   }
+
+  /* ── 모바일 최적화 ── */
+  .stats-table, .comp-table { font-size: 12px; }
+  .stats-table th, .comp-table th { padding: 7px 5px; font-size: 11px; }
+  .stats-table td, .comp-table td { padding: 7px 5px; }
+  .comp-table .names-cell { font-size: 11px; line-height: 1.8; color: var(--text); }
+  .section { margin-bottom: 24px; }
+  .tab-footer { flex-direction: column; gap: 8px; text-align: center; }
+  .section-title h2 { font-size: 14px; }
+  .period-box { font-size: 13px; }
 </style>
 </head>
 <body>
@@ -441,7 +453,16 @@
         <h2>동작시범 촬영</h2>
       </div>
       <div class="period-box">
-        <strong>촬영 시기</strong> : 8월 중
+        <strong>촬영 시기</strong> : 7월 또는 8월 중
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:32px">
+      <div class="section-title">
+        <div class="section-num">4</div>
+        <h2>공개보고서 모바일등록</h2>
+      </div>
+      <div class="period-box">
+        개발 중
       </div>
     </div>
   </div>
@@ -467,7 +488,7 @@
         <div class="info-card" style="border-left-color:#2c5282">
           <div class="info-label">📆 훈련 기간</div>
           <div class="info-value">2026년 8월 30일 ~ 11월 말</div>
-          <div class="info-sub">총 13주 ~ 14주</div>
+          <div class="info-sub">총 14주(휴강 2회 포함)</div>
         </div>
       </div>
     </div>
@@ -613,14 +634,15 @@
   .info-card {
     background: var(--light);
     border-left: 4px solid var(--navy);
-    padding: 12px 18px;
+    padding: 12px 14px;
     border-radius: 0 8px 8px 0;
-    display: flex; align-items: center; gap: 16px;
-    flex-wrap: wrap;
+    display: flex; align-items: center; gap: 10px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
   }
-  .info-label { font-size: 12px; font-weight: 700; color: var(--muted); min-width: 100px; }
-  .info-value { font-size: 14px; font-weight: 700; color: var(--navy); flex: 1; }
-  .info-sub { font-size: 11px; color: var(--muted); background: white; padding: 2px 10px; border-radius: 20px; }
+  .info-label { font-size: 11px; font-weight: 700; color: var(--muted); min-width: auto; white-space: nowrap; }
+  .info-value { font-size: 12px; font-weight: 700; color: var(--navy); white-space: nowrap; }
+  .info-sub { font-size: 10px; color: var(--muted); background: white; padding: 2px 8px; border-radius: 20px; white-space: nowrap; margin-left: auto; }
 
   /* ── Calendar ── */
   .cal-month { margin-bottom: 20px; }
@@ -687,6 +709,13 @@
     font-size: 10px; font-weight: 700; padding: 1px 7px;
     border-radius: 10px; margin-top: 2px;
   }
+
+  /* ── 캘린더 모바일 ── */
+  .cal-table { font-size: 10px; }
+  .cal-table th { padding: 5px 2px; font-size: 10px; }
+  .cal-table td { padding: 5px 2px; font-size: 10px; }
+  .cal-table .week-num { width: 32px; font-size: 10px; }
+  .cal-table .note-cell { font-size: 10px; padding: 3px 5px; min-width: 80px; }
 </style>
 
 <script>
